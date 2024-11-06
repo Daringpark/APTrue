@@ -46,7 +46,7 @@ export default async function Page({
             {/* <DefaultTableItem id={2}/> */}
             <AdminList/>
             <div className={styles.pagination}>
-                <Pagination pageProps={page} pathName="admin" />
+                <Pagination pageNum={page} urlPath="admin" />
             </div>
         </>
     )
