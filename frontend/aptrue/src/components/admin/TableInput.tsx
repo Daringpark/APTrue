@@ -6,6 +6,7 @@ import {format} from 'date-fns';
 import { ko } from 'date-fns/locale';
 import { useState } from 'react';
 import Button from '../common/button/Button';
+import { postAdmin } from '@/types/admin';
 
 export default function TableInput() {
 
