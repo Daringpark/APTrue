@@ -21,6 +21,10 @@ public enum SuccessCode {
 
     // CCTV
     CLIP_RQ_OK(HttpStatus.OK, "C006", "CCTV 요청이 완료되었습니다."),
+    CLIP_DETAIL_OK(HttpStatus.OK, "C007", "상세 정보를 조회했습니다."),
+    CLIP_LIST_OK(HttpStatus.OK, "C010", "CCTV 처리 민원 목록을 조회했습니다."),
+    COMPLETE_RQ(HttpStatus.OK, "C008", "민원 처리를 완료했습니다."),
+    VIDEOS_OK(HttpStatus.OK, "C009", "영상 조회를 완료했습니다."),
 
     // APT
     APT_OK(HttpStatus.OK, "B006", "아파트 정보 조회가 완료되었습니다.");

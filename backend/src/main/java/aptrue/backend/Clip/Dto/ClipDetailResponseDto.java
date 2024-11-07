@@ -12,26 +12,28 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClipRQResponseDto {
+public class ClipDetailResponseDto {
 
     private int clipRQId;
-
-    private List<String> sections;
-
-    private String address;
-
-    private String phone;
-
-    private LocalDateTime createdAt;
 
     private String name;
 
     private String email;
 
-    private String status;
+    private String phone;
+
+    private String address;
 
     private LocalDateTime startDate;
 
     private LocalDateTime endDate;
+
+    private List<String> sections;
+
+    private boolean photoStatus;
+
+    private String password;
+
+    private List<String> clipList;
 
 }

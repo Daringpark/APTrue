@@ -12,26 +12,15 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClipRQResponseDto {
+public class ClipListResponseDto {
 
     private int clipRQId;
 
-    private List<String> sections;
+    private String status;
 
     private String address;
 
-    private String phone;
-
-    private LocalDateTime createdAt;
-
     private String name;
 
-    private String email;
-
-    private String status;
-
-    private LocalDateTime startDate;
-
-    private LocalDateTime endDate;
-
+    private LocalDateTime createdAt;
 }

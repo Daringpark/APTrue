@@ -1,4 +1,4 @@
-package aptrue.backend.Clip.Dto;
+package aptrue.backend.Clip.Dto.Request;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
