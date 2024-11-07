@@ -1,4 +1,4 @@
-import style from '@/app/(webProtected)/(web)/cctv/@cctvForm/cctvForm.module.scss';
+import style from '@/app/(web)/(webProtected)/cctv/@cctvForm/cctvForm.module.scss';
 import CCTVForm from '@/components/cctv/cctvForm';
 
 export default function Page() {

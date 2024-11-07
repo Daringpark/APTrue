@@ -1,25 +1,38 @@
 // import { auth } from "./auth-legacy"; // auth.ts의 auth를 불러온것
 import { auth } from './auth';
 import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
+import { match } from 'path-to-regexp';
+import { getSession } from './app/serverActions/auth';
 
-// 아래 주석을 안써도 됨! auth를 middleware로 정의하면서 로그인이 필요한지를 알아서 확인해줌.
-// export function middleware(request: NextRequest) {
-//     return NextResponse.redirect(new URL('/login', request.url))
-// }
-// export const cofig = {
-//     matcher: '/admin/:path', '/cctv/:path', '/'
-// }
+// 로그인한 사용자만 접근할 수 있는 페이지
+const matchersForAuth = ['/*', '/cctv/*', '/admin/*']
 
-export async function middleware() {
-  const session = await auth();
+// 로그인페이지
+const matchersForSignIn = ['/login']
 
-  if (!session) {
-    // TODO ${process.env.NEXT_PUBLIC_BASE_URL}
-    // return NextResponse.redirect(`http://k11c101.p.ssafy.io/login`)
-  }
+// match(url)(pathname): path-to-regexp 라이브러리의 match 함수는 url 패턴에 맞는 정규식을 생성하여 pathname과 비교
+// 하나라도 true가 나오면 some 메서드가 true를 반환
+// !!를 사용하여 boolean 값으로 변환
+function isMatch(pathname:string, urls:string[]) {
+  return urls.some(url => !!match(url)(pathname))
 }
 
-export const config = {
-  // 미들웨어를 적용할 라우트 즉 로그인을 해야지만 접근할 수 있는 페이지
-  // matcher: ['/:path*', '/cctv/:path*', '/admin/:path*']
-};
+export async function middleware(request: NextRequest) {
+  // request.nextUrl.pathname : 요청된 URL의 경로
+  if (isMatch(request.nextUrl.pathname, matchersForAuth)) {
+    return (await getSession()) // 세션 정보 확인
+    ? NextResponse.next() // 그대로 이어감
+    : NextResponse.redirect(new URL('/login', request.url)) // 세션 정보 없다면 /login으로 리다이렉션됨
+  }
+
+  if (isMatch(request.nextUrl.pathname, matchersForSignIn)) {
+    return (await getSession())
+    // 로그인된 사용자는 로그인 페이지에 접근하려고 할 때 '/'로 리디렉션
+      ? NextResponse.redirect(new URL('/', request.url))
+      : NextResponse.next()
+  }
+
+  return NextResponse.next()
+}
+

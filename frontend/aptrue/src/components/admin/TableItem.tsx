@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import {format} from 'date-fns';
 import { ko } from 'date-fns/locale';
 import Button from '../common/button/Button';
-import { Admin } from '@/types/admin';
 
 export default function TableItem({
     adminId,

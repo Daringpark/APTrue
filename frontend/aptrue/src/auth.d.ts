@@ -1,30 +1,50 @@
-import NextAuth, { DefaultSession } from "next-auth";
-import { JWT } from "next-auth/jwt";
+import NextAuth, {DefaultSession, User} from 'next-auth';
 
+interface Admin {
+    adminId: number;
+    name: string;
+    account: string;
+    password:string;
+    phone:string;
+    createdAt:string;
+}
 
-// declare module "next-auth" {
-//   interface Session {
-//     user: {
-//       id: string;
-//     } & DefaultSession["user"];
-//   }
+interface postAdmin {
+    account:string;
+    name:string;
+    password:string;
+    phone:string;
+}
+
+interface postLogin {
+    account:string;
+    password:string;
+}
+
+// declare module 'next-auth' {
+//     interface Session extends DefaultSession {
+//         user: {
+//             account:string
+//         } & DefaultSession['user'];
+//         accessToken:string;
+//     }
 // }
 
-// Session 타입 확장
-declare module "next-auth" {
+
+declare module 'next-auth' {
+    // User 인터페이스는 authorize 함수가 로그인 성공 시 반환하는 사용자 정보를 정의
+    interface User {
+        adminID: number;
+        account:string;
+        isSuperAdmin:boolean;
+    //  accessToken: string
+    }
     interface Session {
-      user: {
-        id: string;
-        account: string;
-        isSuperAdmin: boolean;
-      } & DefaultSession["user"];
-      accessToken: string; // accessToken 속성 추가
+      accessToken: string
     }
   }
-  
-  // JWT 타입 확장
-  declare module "next-auth/jwt" {
+declare module '@auth/core/jwt' {
     interface JWT {
-      accessToken: string; // JWT에 accessToken 추가
+      accessToken: string
     }
-  }
+}

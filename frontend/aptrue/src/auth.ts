@@ -1,107 +1,116 @@
 import NextAuth  from "next-auth";
-import CredentialsProvider from 'next-auth/providers/credentials';
-import {parse} from 'cookie';
+import Credentials from "next-auth/providers/credentials";
 
+interface UserInfo {
+    account:string;
+    password:string;
+}
+
+interface ResponseValue {
+    user: {
+        adminID:number
+        account: string;
+        name: string;
+        isSupserAdmin: boolean;
+    }
+    accessToken?: string
+  }
 
 export const {
-    handlers: {GET, POST}, // api 라우트
-    auth,
-    signIn // 로그인용
+    // handlers: {GET, POST}, // api 라우트
+    handlers, // 프로젝트의 인증 관리를 위한 API 라우트(GET, POST 함수) 객체
+    auth, // 세션 정보를 반환하는 비동기 함수
+    signIn, // 사용자 로그인을 시도하는 비동기 함수
+    signOut // 사용자 로그아웃을 시도하는 비동기 함수
 } = NextAuth({
     pages: {
         // 우리는 여기서 로그인 하므로 로그인하는 페이지를 등록하기
         signIn: '/login'
     },
-    // 로그아웃했을때 로그인 필요한 페이지 막는 방법!!! 
-    callbacks:{
-        // session검사했을떄 session이 없다면 redirect시키기
-        // async authorized({auth}) {
-        //     if (!auth) {
-        //         return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}/login`)
-        //     }
-        //     return true;
-        // }
-        // 세션에 엑세스 토큰 추가
-        async session({session, token}) {
-            session.accessToken = token.accessToken;
-            return session
-        },
-        async jwt({token, user}) {
+    // authorize 함수는 회원가입 및 로그인에 성공한 경우, 
+    // 사용자의 ID(id), 표시 이름(name), 이메일(email), 프로필 이미지(image)의 정해진 속성으로 정보를 반환
+    providers: [
+        Credentials({
+            authorize: async credentials => {
+                const userInfo = credentials as unknown as UserInfo
 
-            // 사용자 정보있으면 토큰 추가
-            if (user) {
-                token.accessToken = (user as any).accessToken; // 타입 단언 사용
+                try {
+                    // 로그인
+                    const user = await _login(userInfo);
+                    
+                    return user ? {...user} : null;
+                } catch (error) {
+                    throw new Error("로그인 실패")
+                }
             }
-            return token
+        })
+    ],
+    callbacks:{
+        // 사용자 로그인을 시도했을 때 호출되며, true를 반환하면 로그인 성공, false를 반환하면 로그인 실패로 처리
+        signIn: async () => {
+            return true
+        },
+        // JWT가 생성되거나 업데이트될 때 호출되며, 반환하는 값은 암호화되어 쿠키에 저장
+        jwt: async ({token, user}) => {
+            // if (user?.accessToken) {
+            //     sessionStorage.accessToken = user.accessToken
+            // }
+            // return token
+            if (user) {
+                // 쿠키에서 accessToken 읽어오기
+                const accessToken = document.cookie
+                  .split('; ')
+                  .find((row) => row.startsWith('accessToken='))
+                  ?.split('=')[1];
+                
+                if (accessToken) {
+                  token.accessToken = accessToken;
+                }
+              }
+              return token;
+        },
+        // jwt 콜백이 반환하는 token을 받아, 세션이 확인될 때마다 호출되며, 반환하는 값은 클라이언트에서 확인
+        session: async ({session, token}) => {
+            if (token?.accessToken) {
+                session.accessToken = token.accessToken
+            }
+            return session
         }
     },
-    providers: [
-        CredentialsProvider({
-            name: "Credentials",
-            credentials: {
-              account: { label: "account", type: "text" },
-              // TO DO type : "password"
-              password: { label: "password", type: "text" },
-            },
-            // 세션을 생성할때 반환 값들 사용할 수 있음.
-        authorize: async (credentials : any) => {
-            console.log('authorize 부분')
-            
-            try {
-                    // TODO ${process.env.NEXT_PUBLIC_BASE_URL}
-                const authResponse = await fetch(`http://k11c101.p.ssafy.io/api/login`, {
-                method:"POST",
-                headers: {
-                    "Content-Type":"application/json",
-                },
-                body: JSON.stringify({
-                    // credentials안에 username 이랑 password로 고정되어 있음. 그래서 바꿔주기
-                    account: credentials.account ,
-                    password:credentials.password
-                    }),
-                })
-
-                if (!authResponse.ok) {
-                    console.error("서버에서 인증 실패:", authResponse.statusText);
-                    return null;
-                  }
-
-                const cookies = authResponse.headers.get('set-cookie');
-                if (!cookies) {
-                    console.error('쿠키가 없습니다')
-                    return null;
-                }
-
-                const parsedCookies = parse(cookies);
-                const accessToken = parsedCookies["accessToken"]
-                const refreshToken = parsedCookies["refreshToken"]
-                console.log('토큰?')
-
-                if (!accessToken) {
-                    console.error("엑세스토큰이 없습니다.")
-                }
-
-                const response = await authResponse.json();
-                console.log('로그인 후 response 반환 값', response)
-                const user = response.data;
-                console.log('로그인 성공 후 반환', user)
-
-                return {
-                    id: user.adminID,
-                    account : user.account,
-                    name: user.name,
-                    isSuperAdmin:user.isSuperAdmin,
-                    accessToken: accessToken
-                }
-            } catch (error) {
-                console.log('로그인 실패', error)
-                throw new Error('로그인 실패')
-                // return null
-            }
-        },
-        }),
-  ],
-  // TO DO
-      //secret: process.env.AUTH_SECRET
+    // TO DO
+    //secret: process.env.AUTH_SECRET
       secret: '11111'
 });
+
+async function _login(
+    body : {
+        account:string;
+        password:string;
+    }
+) {
+    const response = await fetch(`https://ssafy-aptrue.co.kr/api/login`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body)
+    })
+
+    const data = await response.json();
+    console.log('로그인 성공', data.data)
+
+    if (response.ok && data && typeof data !== 'string') {
+      const { adminID, account, name, isSupserAdmin } = data.data;
+      return {
+        id: adminID,
+        adminID: adminID,
+        account: account,
+        name: name,
+        isSupserAdmin : isSupserAdmin
+      };
+    }
+  
+    throw new Error("로그인 요청에 실패했습니다.");
+
+
+}

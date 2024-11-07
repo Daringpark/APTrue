@@ -1,5 +1,5 @@
 import CCTVList from '@/components/cctv/cctvList';
-import style from '@/app/(webProtected)/(web)/cctv/@cctvList/cctvList.module.scss';
+import style from '@/app/(web)/(webProtected)/cctv/@cctvList/cctvList.module.scss';
 import Pagination from '@/components/common/pagination/Pagination';
 
 const response = {
