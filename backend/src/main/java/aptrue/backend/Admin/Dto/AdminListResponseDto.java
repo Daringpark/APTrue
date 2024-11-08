@@ -17,4 +17,5 @@ public class AdminListResponseDto {
     private String name;
     private String phone;
     private LocalDateTime createdAt;
+    private String password;
 }

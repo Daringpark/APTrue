@@ -161,6 +161,7 @@ public class AdminServiceImpl implements AdminService {
                     .createdAt(admin.getCreatedAt())
                     .name(admin.getName())
                     .phone(admin.getPhone())
+                    .password(admin.getPassword())
                     .build();
             adminList.add(adminListResponseDto);
         }
