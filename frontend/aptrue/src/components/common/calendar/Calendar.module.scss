@@ -1,0 +1,133 @@
+@use '@/styles/constants/colors.scss' as colors;
+
+.container {
+    background-color: colors.$white;
+    display: "flex";
+    flex-direction: "column";
+    align-items: "center";
+    border: solid 1px colors.$gray3;
+    padding: 5px;
+    position: relative;
+    z-index: 20;
+
+    .dropDown {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px;
+
+        select {
+            background-color: colors.$white;
+            font-family: 'semibold';
+            font-size: 12px;
+            height:30px;
+            margin-right:10px;
+            border-radius: 10px;
+            border: solid 0;
+
+            option {
+                border: solid 1px colors.$gray3;
+                border-radius: 5px;
+            }
+        }
+    }
+
+    .week {
+        padding:5px 0;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        text-align: center;
+        margin-bottom: 10px;
+        font-family: 'semibold';
+        font-size: 12px;
+        color: colors.$gray7;
+    }
+
+    .day {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+
+        button {
+            border-radius: 20px;
+            font-family: 'regular';
+            font-size: 12px;
+            padding: 5px;
+            border: solid 1px transparent;
+            background-color: transparent;
+            cursor: pointer;
+            
+        }
+
+        .startFill {
+            background-color: colors.$blue4;
+            color: colors.$white;
+        }
+
+        .endFill {
+            background-color: colors.$blue4;
+            color: colors.$white;
+        }
+        
+        .betweenFill {
+            background-color: colors.$blue2;
+            color: colors.$white;
+            // border-radius: 0;
+        }
+    }
+
+    .timeCotainer {
+        margin-top: 5px;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+
+        label {
+            font-family: 'semibold';
+            font-size: 12px;
+            width: 70px;
+            text-align: center;
+        }
+
+        select {
+            font-family: 'regular';
+            font-size: 12px;
+            width: 50px;
+            height: 30px;
+            border: solid 2px colors.$blue4;
+            border-radius: 5px;
+        }
+
+        input {
+            width: 50px;
+            height: 30px;
+            border: solid 2px colors.$blue4;
+            border-radius: 5px;
+            padding-left: 10px;
+            font-family: 'regular';
+            font-size: 12px;
+            text-align: center;
+            
+
+            ::placeholder {
+                color: colors.$blue4;
+                font-family: 'regular';
+            }
+        }
+    }
+}
+
+.confirm {
+    width: 50px;
+    height: 20px;
+    background-color: colors.$blue4;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-size: 12px;
+    margin-top: 5px;
+    &:disabled {
+        background-color: colors.$gray2;/* 비활성화 시 회색 */
+        color: colors.$black; /* 비활성화된 상태의 텍스트 색상 */
+        cursor: not-allowed; /* 비활성화 커서 */
+      }
+}

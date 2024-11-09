@@ -1,0 +1,32 @@
+@use '@/styles/constants/colors.scss' as colors;
+
+.page {
+  width: 100vw;
+  height: 100vh;
+  background-color: colors.$gray1;
+  display: flex;
+  top: 0;
+}
+
+.container {
+  margin-left: 210px;
+  width: 61%;
+  margin-top: 50px;
+  // height: 100vh;
+}
+
+.content {
+  margin-top: 15px;
+  margin-left: 40px;
+}
+
+.title {
+  font-family: 'medium';
+  font-size: 18px;
+}
+
+.notification {
+  position: fixed;
+  top: 0;
+  right: 0;
+}

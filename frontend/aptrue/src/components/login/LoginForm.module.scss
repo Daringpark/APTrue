@@ -1,0 +1,73 @@
+@use '@/styles/constants/colors.scss' as colors;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    font-family: 'bold';
+    width: fit-content;
+    
+    .label {
+        font-family: 'semibold';
+        font-size: 24px;
+        padding-left: 5px;
+        color: colors.$gray7;
+    }
+
+    input {
+        height: 50px;
+        max-width: 100%;
+        width: 415px;
+        background-color: colors.$white;     
+        border: solid 2px colors.$gray4;
+        border-radius: 10px;
+        font-size: 20px; 
+        font-family: 'medium';
+        padding-left: 20px;
+        margin-bottom: 15px;
+
+        &::placeholder {
+            color: colors.$gray4;
+        }
+
+        &:hover {
+            border-color: colors.$blue4;
+        }
+    }
+
+    .error {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: colors.$red;
+        font-family: 'regular';
+    }
+
+    button {
+        max-width: 100%;
+        width: 415px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: colors.$blue4;
+        color: colors.$white;
+        border-radius: 10px;
+        border: transparent;
+        font-family: 'semibold';
+        font-size: 24px;
+        margin: 10px 0;
+    
+        &:hover {
+            background-color: colors.$blue5;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+  .container input,
+  .container button {
+    width: 100%; // 더 작은 화면에서는 너비를 전체로 확장
+  }
+
+}

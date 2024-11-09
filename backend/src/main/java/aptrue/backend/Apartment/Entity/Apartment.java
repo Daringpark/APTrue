@@ -31,11 +31,18 @@ public class Apartment {
     private String aptName;
 
     @NotNull
-    @Column(name = "address", unique = true, length = 100)
-    private String address;
+    @Column(name = "aptImg", unique = true, length = 100)
+    private String aptImg;
 
-    @Column(name = "houseCount")
-    private int houseCount;
+    @NotNull
+    @Column(name = "location", unique = true, length = 100)
+    private String location;
+
+    @Column(name = "block")
+    private int block;
+
+    @Column(name = "household")
+    private int household;
 
     @OneToMany(mappedBy = "apartment", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Admin> adminList = new ArrayList<>();

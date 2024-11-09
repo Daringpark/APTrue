@@ -54,19 +54,29 @@ public class ClipRQ {
     private String status;
 
     @NotNull
-    @Column(name = "startTime", columnDefinition = "timestamp")
-    private LocalDateTime startTime;
+    @Column(name = "password")
+    private String password;
 
     @NotNull
-    @Column(name = "endTime", columnDefinition = "timestamp")
-    private LocalDateTime endTime;
+    @Column(name = "photoStatus")
+    private boolean photoStatus;
+
+    @NotNull
+    @Column(name = "startDate", columnDefinition = "timestamp")
+    private LocalDateTime startDate;
+
+    @NotNull
+    @Column(name = "endDate", columnDefinition = "timestamp")
+    private LocalDateTime endDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "admin_id")
     private Admin admin;
 
-    @OneToOne
-    @JoinColumn(name = "clip_id")
-    private Clip clip;
+    @Column(name = "clipList")
+    private List<String> clipList;
+
+    @Column(name = "clipCreatedAt")
+    private LocalDateTime clipCreatedAt;
 
 }

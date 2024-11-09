@@ -24,10 +24,13 @@ public class ClipRQRequestDto {
     private String address;
 
     @NotNull
-    private LocalDateTime startTime;
+    private String password;
 
     @NotNull
-    private LocalDateTime endTime;
+    private LocalDateTime startDate;
+
+    @NotNull
+    private LocalDateTime endDate;
 
     @NotNull
     private List<String> sections;

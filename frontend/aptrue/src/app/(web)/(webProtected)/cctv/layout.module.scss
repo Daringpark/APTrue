@@ -1,0 +1,27 @@
+@use "@/styles/constants/colors.scss" as colors;
+
+.layout {
+  width: 100vw; /* 전체 뷰포트 너비 */
+  height: 100vh; /* 전체 뷰포트 높이 */
+  display: flex;
+}
+
+.container {
+  background-color: colors.$gray1;
+  padding-left: 210px; /* 왼쪽 네브바 크기만큼 패딩 */
+  padding-top: 50px; /* 상단 여백 */
+  flex: 1; /* 남은 공간을 채우도록 설정 */
+  display: flex;
+  justify-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.contents {
+  box-sizing: border-box;
+  margin: 20px;
+  display: flex;
+  width: 1100px;
+  justify-content: space-around;
+  gap: 30px;
+}

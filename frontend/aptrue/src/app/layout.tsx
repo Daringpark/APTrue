@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
-import "@/styles/globals.scss";
-import RecoilRootProvider from "@/utils/RecoilRootProvider";
+import type { Metadata } from 'next';
+import '@/styles/globals.scss';
+import RecoilRootProvider from '@/utils/RecoilRootProvider';
 
 export const metadata: Metadata = {
-  title: "APtrue",
-  description: "아파트의 진실을 알고 싶다면, 아파트루(APTrue.)!",
+  title: 'APTrue',
+  description: '아파트의 진실을 알고 싶다면, 아파트루(APTrue.)!',
 };
 
 export default function RootLayout({

@@ -1,0 +1,166 @@
+@use "@/styles/constants/colors.scss" as colors;
+
+.cctv-form-container {
+  width: 500px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  position: relative;
+  .header{
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    margin: 30px 0;
+  }
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.location-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 컨테이너 자체는 가운데 정렬 */
+  width: 466px;
+  box-sizing: border-box;
+  gap: 10px;
+
+  .label{
+      width: 70px;
+      height: 30px;
+      box-sizing: border-box;
+      font-size: 12px;
+      color: colors.$black;
+      font-family: 'medium';
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 5px;
+      padding-right: 15px;
+  }
+
+  .location-button {
+    font-family: 'medium';
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    width: 466px; /* 너비를 auto로 설정하여 버튼들이 필요한 만큼만 차지 */
+    height: auto;
+  }
+}
+
+.double {
+  display: flex;
+  gap: 5px;
+}
+
+.submit{
+position: absolute;
+bottom: 50px;
+right: 30px;
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+z-index: 1;
+.message{
+  font-size: 12px;
+  font-family: 'medium';
+  margin-bottom: 5px;
+  
+}
+}
+
+.red {
+  color: colors.$redDelte;
+}
+.blue{
+  color:colors.$blue5
+}
+.green{
+  color:#33B453
+}
+.real-blue{
+  color: colors.$realBlue;
+}
+
+
+.photoStatus{
+  margin-top: 30px;        
+  padding-left: 5px;
+  font-size: 12px;
+  font-family: 'medium';
+  height: 40px;
+  width: 465px;
+  flex-direction: column;
+  display: flex;
+  gap: 10px;
+}
+
+.uploadInfo{
+  margin-top: 20px;
+  padding-left: 5px;
+  font-size: 12px;
+  font-family: 'medium';
+  height: 40px;
+  width: 466px;
+  flex-direction: column;
+  display: flex;
+  gap: 15px;
+}
+
+.uploadLinkBox {
+  width: 465px;
+  display: flex;
+  align-items: center;
+  .label{
+    width: 150px;
+    box-sizing: border-box;
+    font-size: 12px;
+    color: colors.$gray8;
+    font-family: 'medium';
+    display: flex;
+    justify-content: space-between;
+    padding-right: 15px;
+  }
+}
+
+.copyBox{
+  width: 300px;
+  height: 30px;
+  background-color: colors.$gray1;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'regular';
+  color: colors.$gray7;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.cctv-video-box{
+  margin-top: 20px;        
+  padding-left: 5px;
+  font-size: 12px;
+  font-family: 'medium';
+  height: 40px;
+  width: 465px;
+  flex-direction: column;
+  display: flex;
+  gap: 10px;
+}
+

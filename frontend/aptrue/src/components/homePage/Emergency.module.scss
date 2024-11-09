@@ -1,0 +1,43 @@
+@use '@/styles/constants/colors.scss' as colors;
+
+.page {
+  background-color: colors.$gray1;
+}
+
+// .container {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: flex-start;
+// }
+
+.title {
+  font-family: 'medium';
+  font-size: 24px;
+  color: colors.$red;
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.contents {
+  display: flex;
+  justify-content: space-between; /* textGroup과 complete를 양쪽 끝으로 배치 */
+  align-items: center; /* 세로 방향 가운데 정렬 */
+  font-family: 'regular';
+  margin-top: 30px;
+}
+
+.textgroup {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* message와 date 사이 간격 설정 */
+}
+
+.message {
+  font-size: 20px;
+}
+
+.date {
+  font-size: 16px;
+  color: colors.$gray6;
+}

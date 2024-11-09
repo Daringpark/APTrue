@@ -1,11 +1,7 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint",
-    "prettier",
-    "import"
-  ],
+  "plugins": ["@typescript-eslint", "prettier", "import"],
   "parserOptions": {
     "project": "./tsconfig.json",
     "createDefaultProgram": true
@@ -15,9 +11,7 @@
     "node": true,
     "es6": true
   },
-  "ignorePatterns": [
-    "node_modules/"
-  ],
+  "ignorePatterns": ["node_modules/"],
   "extends": [
     "airbnb",
     "airbnb-typescript",
@@ -41,30 +35,28 @@
       "typescript": {}
     },
     "import/parsers": {
-      "@typescript-eslint/parser": [
-        ".ts"
-      ]
+      "@typescript-eslint/parser": [".ts"]
     }
   },
   "rules": {
+    "react-hooks/exhaustive-deps": [
+      "warn",
+      {
+        "additionalHooks": "useRecoilCallback"
+      }
+    ],
     "@typescript-eslint/no-explicit-any": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [
       "warn",
       {
-        "extensions": [
-          ".ts",
-          ".tsx"
-        ]
+        "extensions": [".ts", ".tsx"]
       }
     ],
     "react/function-component-definition": [
       2,
       {
-        "namedComponents": [
-          "arrow-function",
-          "function-declaration"
-        ]
+        "namedComponents": ["arrow-function", "function-declaration"]
       }
     ],
     "sort-imports": [
@@ -73,12 +65,7 @@
         "ignoreCase": false,
         "ignoreDeclarationSort": false,
         "ignoreMemberSort": false,
-        "memberSyntaxSortOrder": [
-          "none",
-          "all",
-          "multiple",
-          "single"
-        ],
+        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
         "allowSeparatedGroups": false
       }
     ],
@@ -86,15 +73,9 @@
       "error",
       {
         "groups": [
-          [
-            "builtin",
-            "external"
-          ],
+          ["builtin", "external"],
           "internal",
-          [
-            "parent",
-            "sibling"
-          ],
+          ["parent", "sibling"],
           "index",
           "object"
         ],
@@ -115,9 +96,7 @@
             "position": "after"
           }
         ],
-        "pathGroupsExcludedImportTypes": [
-          "react"
-        ],
+        "pathGroupsExcludedImportTypes": ["react"],
         "newlines-between": "always",
         "alphabetize": {
           "order": "asc",

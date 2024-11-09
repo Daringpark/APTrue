@@ -1,0 +1,93 @@
+@use '@/styles/constants/colors.scss' as colors;
+
+.base-button-style {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  border: 0;
+  border-radius: 5px;
+  font-family: 'medium';
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.webBig {
+  width: 415px;
+  height: 50px;
+  font-family: 'bold';
+  font-size: 24px;
+  border-radius: 10px;
+}
+
+.webMid {
+  width: 150px;
+  height: 40px;
+  font-size: 16px;
+}
+
+.webRegular {
+  width: 105px;
+  height: 25px;
+  font-size: 12px;
+}
+
+.webSmall {
+  height: 25px;
+  min-width: 105px;
+  font-size: 12px;
+  border-radius: 10px;
+}
+
+// 등록, 삭제
+.webTiny {
+  width: 50px;
+  height: 25px;
+  font-size: 12px;
+}
+
+.appBig {
+  width: 300px;
+  height: 50px;
+  font-family: 'semibold';
+  font-size: 20px;
+  // border-radius: 10px;
+}
+
+.appMid {
+  width: 150px;
+  height: 40px;
+  font-size: 16px;
+}
+
+.appRegular {
+  width: 345px;
+  height: 25px;
+  font-size: 12px;
+}
+
+.blue {
+  background-color: colors.$blue5;
+  color: colors.$white;
+}
+.lightBlue {
+  background-color: colors.$blue4;
+  color: colors.$white;
+}
+.gray {
+  background-color: colors.$gray5;
+  color: colors.$white;
+}
+.red {
+  background-color: colors.$redDelte;
+  color: colors.$white;
+}
+
+.white {
+  background-color: colors.$white;
+  border: 1px solid colors.$gray5;
+  color: colors.$gray6;
+}

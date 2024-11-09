@@ -1,0 +1,39 @@
+@use './../../../styles/constants/colors.scss' as colors;
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+    width: fit-content;
+
+    .label {
+        width: 70px;
+        box-sizing: border-box;
+        font-size: 12px;
+        color: colors.$black;
+        font-family: 'medium';
+        display: flex;
+        justify-content: space-between;
+        padding-left: 5px;
+        padding-right: 15px;
+    }
+
+    input {
+        box-sizing: border-box;
+        height: 30px;
+        width: 265px;
+        background-color: colors.$gray1;
+        border: 0px;
+        border-radius: 5px;
+        font-size: 12px;
+        color: colors.$black;
+        font-family: 'regular';
+        padding: 0 5px;
+
+        &::placeholder {
+            color: colors.$gray4;
+        }
+    }
+    
+}

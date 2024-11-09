@@ -1,4 +1,3 @@
-// @forward './constants/colors.scss';
 @use 'reset.scss';
 
 @font-face {
@@ -20,4 +19,22 @@
   src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff');
   font-weight: 600;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'bold';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+html, body {
+  font-family: 'medium';
+  // overflow: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }

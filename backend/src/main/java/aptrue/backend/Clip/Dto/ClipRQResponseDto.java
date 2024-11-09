@@ -1,9 +1,5 @@
 package aptrue.backend.Clip.Dto;
 
-import aptrue.backend.Admin.Entity.Admin;
-import aptrue.backend.Clip.Entity.Clip;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -34,8 +30,8 @@ public class ClipRQResponseDto {
 
     private String status;
 
-    private LocalDateTime startTime;
+    private LocalDateTime startDate;
 
-    private LocalDateTime endTime;
+    private LocalDateTime endDate;
 
 }

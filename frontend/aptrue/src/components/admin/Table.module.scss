@@ -1,0 +1,180 @@
+@use './../../styles/constants/colors.scss' as colors;
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: fit-content;
+
+    input {
+        width: 137px;
+        height: 30px;
+        border-radius: 5px;
+        border: 0;
+        background-color: colors.$white;
+        display: flex;
+        text-align: center;
+        font-size: 12px;
+        font-family: 'regular';
+        color: colors.$gray6;
+
+        &::placeholder {
+            font-size: 12px;
+            font-family: 'medium';
+            color: colors.$gray5;
+        }
+
+        &:hover {
+            border-color: colors.$gray5;
+        }
+    }
+
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        border: solid 1px colors.$gray4;
+    }
+
+    .no {
+        width: 52px;
+        height: 100%;
+    }
+
+    .name {
+        width: 150px;
+        height: 100%;
+    }
+
+    .id {
+        width: 170px;
+        height: 100%;
+    }
+
+    .password {
+        width: 185px;
+        height: 100%;
+    }
+
+    .phoneNumber {
+        width: 190px;
+        height: 100%;
+    }
+
+    .date {
+        width: 170px;
+        height: 100%;
+    }
+
+    .blank {
+        width: 90px;
+        height: 100%;
+    }
+
+    @media (max-width: 1200px) {
+
+        input {
+            width: 110px;
+        }
+        .no {
+            width: 40px;
+        }
+        .name {
+            width: 120px;
+        }
+        .id {
+            width: 140px;
+        }
+        .password {
+            width: 150px;
+        }
+        .phoneNumber {
+            width: 160px;
+        }
+        .date {
+            width: 140px;
+        }
+        .blank {
+            width: 70px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        input {
+            width: 90px;
+        }
+        .no {
+            width: 35px;
+        }
+        .name {
+            width: 100px;
+        }
+        .id {
+            width: 120px;
+        }
+        .password {
+            width: 130px;
+        }
+        .phoneNumber {
+            width: 140px;
+        }
+        .date {
+            width: 120px;
+        }
+        .blank {
+            width: 60px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        input {
+            width: 90px;
+        }
+        .no {
+            width: 30px;
+        }
+        .name {
+            width: 80px;
+        }
+        .id {
+            width: 100px;
+        }
+        .password {
+            width: 110px;
+        }
+        .phoneNumber {
+            width: 120px;
+        }
+        .date {
+            width: 100px;
+        }
+        .blank {
+            width: 50px;
+        }
+    }
+}
+
+.isColumnName {
+    background-color: colors.$gray2;
+    font-family: 'semibold';
+    font-size: 16px;
+    color: colors.$gray7;
+    border-bottom: solid 1px colors.$gray5;
+}
+
+.isTableItem {
+    background-color: colors.$white;
+    font-family: 'regular';
+    font-size: 12px;
+    color: colors.$gray6
+}
+
+.isTableInput {
+    background-color: colors.$gray1;
+    font-family: 'regular';
+    font-size: 12px;
+    color: colors.$gray6;
+}

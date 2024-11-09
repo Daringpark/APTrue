@@ -1,0 +1,45 @@
+@use '@/styles/constants/colors.scss' as colors;
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: -1px solid colors.$gray2;
+  background-color: colors.$blue1;
+  border-radius: 8px;
+  width: 180px;
+  height: 105px;
+}
+
+.image {
+  width: 60px;
+  height: 80px;
+  border-radius: 5px;
+  margin-right: 10px; // 이미지와 텍스트 간의 간격
+}
+
+.textContainer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  font-family: 'medium';
+  font-size: 16px;
+  color: colors.$gray6;
+}
+
+.location,
+.details {
+  color: colors.$gray5;
+  font-family: 'regular';
+  font-size: 12px;
+}
+
+.location {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}

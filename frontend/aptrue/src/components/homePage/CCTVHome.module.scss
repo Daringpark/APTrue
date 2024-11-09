@@ -1,0 +1,41 @@
+.button {
+  margin: 13px 0;
+}
+
+.cctvContainer {
+  display: flex;
+  flex-wrap: wrap; // 줄바꿈을 허용
+  gap: 20px; // 컴포넌트 간 간격
+}
+
+.cctvContainer > * {
+  flex: 0 0 calc(50% - 10px);
+  box-sizing: border-box;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modalContent {
+  padding: 20px;
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalContent video {
+  max-width: 100%;
+  max-height: 100%;
+}

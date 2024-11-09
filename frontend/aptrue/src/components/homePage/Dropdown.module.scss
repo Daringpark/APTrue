@@ -1,0 +1,52 @@
+@use '@/styles/constants/colors.scss' as colors;
+
+.dropdown {
+  position: relative;
+  width: 60px;
+  font-family: 'medium';
+  font-size: 12px;
+  color: colors.$gray5;
+}
+
+.dropdownButton {
+  display: flex; /* Flexbox 사용 */
+  align-items: center; /* 세로 가운데 정렬 */
+  justify-content: space-between; /* 가로 간격 조정 */
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+  cursor: pointer;
+
+  img {
+    margin-left: 3px; /* 필요에 따라 간격 조정 */
+  }
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%; /* 필요에 따라 조정 */
+  z-index: 1;
+}
+
+.dropdownItem {
+  padding: 7px 5px;
+  cursor: pointer;
+  text-align: center;
+
+  &:hover {
+    background-color: #f0f0f0;
+    color: colors.$gray5;
+  }
+}
+
+.selected {
+  background-color: colors.$blue3; /* 선택된 아이템의 배경 색상 */
+  color: white; /* 선택된 아이템의 텍스트 색상 */
+}

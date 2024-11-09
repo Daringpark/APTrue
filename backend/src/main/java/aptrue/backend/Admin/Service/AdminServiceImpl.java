@@ -67,7 +67,7 @@ public class AdminServiceImpl implements AdminService {
 
         Cookie accessTokenCookie = new Cookie("accessToken", accessToken);
         accessTokenCookie.setHttpOnly(true);
-        accessTokenCookie.setSecure(false);
+        accessTokenCookie.setSecure(true);
         accessTokenCookie.setPath("/");
         accessTokenCookie.setMaxAge(3600);
 
@@ -142,9 +142,9 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Transactional
-    public List<AdminListResponseDto> getAdminList(HttpServletRequest httpServletRequest) {
+    public List<AdminListResponseDto> getAdminList(HttpServletRequest httpServletRequest,int page, int limit) {
         int superAdminId = cookieUtil.getAdminId(httpServletRequest);
-
+        log.info("SuperAdmin ID: {}", superAdminId);
         Admin superAdmin = adminRepository.findByAdminId(superAdminId)
                 .orElseThrow(()-> new BusinessException(ErrorCode.ADMIN_NOT_FOUND));
 
@@ -152,15 +152,21 @@ public class AdminServiceImpl implements AdminService {
             throw new BusinessException(ErrorCode.NOT_SUPER_ADMIN);
         }
 
+        int start = (page-1)*limit;
         List<Admin> adminAll = adminRepository.findAll();
         List<AdminListResponseDto> adminList = new ArrayList<>();
-        for (Admin admin : adminAll) {
+        for (int i=start;i<start+limit;i++) {
+            if (i>=adminAll.size()) {
+                break;
+            }
+            Admin admin = adminAll.get(i);
             AdminListResponseDto adminListResponseDto = AdminListResponseDto.builder()
                     .account(admin.getAccount())
                     .adminID(admin.getAdminId())
                     .createdAt(admin.getCreatedAt())
                     .name(admin.getName())
                     .phone(admin.getPhone())
+                    .password(admin.getPassword())
                     .build();
             adminList.add(adminListResponseDto);
         }

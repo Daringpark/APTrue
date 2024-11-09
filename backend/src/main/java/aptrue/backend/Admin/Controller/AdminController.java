@@ -43,14 +43,15 @@ public class AdminController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login (@RequestBody LoginRequestDto loginRequestDto, HttpServletResponse httpServletResponse) {
+        log.info("{}, {}", loginRequestDto.toString(), loginRequestDto.getPassword());
         LoginResponseDto loginResponseDto = adminService.login(loginRequestDto, httpServletResponse);
         ResultResponse resultResponse = ResultResponse.of(SuccessCode.LOGIN_OK, loginResponseDto);
         return ResponseEntity.status(resultResponse.getStatus()).body(resultResponse);
     }
 
-    @GetMapping("/admin/list")
-    public ResponseEntity<?> adminList(HttpServletRequest httpServletRequest) {
-        List<AdminListResponseDto> adminListResponseDtos =adminService.getAdminList(httpServletRequest);
+    @GetMapping("/admin/list/{page}/{limit}")
+    public ResponseEntity<?> adminList(HttpServletRequest httpServletRequest, @PathVariable int page, @PathVariable int limit) {
+        List<AdminListResponseDto> adminListResponseDtos =adminService.getAdminList(httpServletRequest,page, limit);
         ResultResponse resultResponse = ResultResponse.of(SuccessCode.GET_ADMIN_LIST, adminListResponseDtos);
         return ResponseEntity.status(resultResponse.getStatus()).body(resultResponse);
     }
@@ -64,26 +65,28 @@ public class AdminController {
 
 
     @PostMapping("/superAdmin")
-    @Operation(summary = "슈퍼 유저 회원가입", description = "슈퍼 어드민 만드는 API")
+    @Operation(summary = "슈퍼 유저 회원가입 야호", description = "슈퍼 어드민 만드는 API")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "회원가입 성공",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ResultResponse.class))),
             @ApiResponse(responseCode = "400", description = "에러")
     })
-    public ResponseEntity<?> superAdmin (@RequestBody SignupRequestDto signupRequestDto) {
+    public ResponseEntity<?> superAdmin (@RequestBody SuperAdminRequestDto superAdminRequestDto) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         Apartment apart = Apartment.builder()
-                .aptName("sixbee3")
-                .address("Samsung_Gwangju3")
-                .houseCount(6663)
+                .aptName(superAdminRequestDto.getAptName())
+                .block(superAdminRequestDto.getBlock())
+                .location(superAdminRequestDto.getLocation())
+                .aptImg(superAdminRequestDto.getAptImg())
+                .household(superAdminRequestDto.getHousehold())
                 .build();
         apartmentRepository.save(apart);
         Admin admin = Admin.builder()
-                .name(signupRequestDto.getName())
-                .account(signupRequestDto.getAccount())
-                .password(passwordEncoder.encode(signupRequestDto.getPassword()))
-                .phone(signupRequestDto.getPhone())
+                .name(superAdminRequestDto.getName())
+                .account(superAdminRequestDto.getAccount())
+                .password(passwordEncoder.encode(superAdminRequestDto.getPassword()))
+                .phone(superAdminRequestDto.getPhone())
                 .isSuperAdmin(true)
                 .createdAt(LocalDateTime.now())
                 .apartment(apart)

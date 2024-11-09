@@ -1,0 +1,56 @@
+@use '@/styles/constants/colors.scss' as colors;
+
+.layout {
+    margin-left: 210px;
+    margin-top: 50px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: colors.$gray1;
+
+    .container {
+        margin-top: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: fit-content;
+
+        .title {
+            font-family: 'medium';
+            font-size: 18px;
+            color: colors.$gray8;
+            box-sizing: border-box;
+            width: 1009px;
+            padding: 20px 5px;
+        }
+
+        @media (max-width: 1200px) {
+
+            .title {
+                width: 800px;
+            }
+
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                width: 760px;
+            }
+
+        }
+
+    }
+
+    @media (max-width: 1500px) {
+
+        .container {
+
+            margin-top: 40px;
+
+        }
+
+
+    }
+
+}

@@ -1,0 +1,21 @@
+@use '@/styles/constants/colors.scss' as colors;
+
+.button {
+    max-width: 100%;
+    width: 415px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: colors.$blue4;
+    color: colors.$white;
+    border-radius: 10px;
+    border: transparent;
+    font-family: 'semibold';
+    font-size: 24px;
+    margin: 10px 0;
+
+    &:hover {
+        background-color: colors.$blue5;
+    }
+}

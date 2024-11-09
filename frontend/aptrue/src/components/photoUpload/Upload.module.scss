@@ -1,0 +1,87 @@
+@use '@/styles/constants/colors.scss' as colors;
+
+.upload {
+  display: flex;
+  width: 270px;
+  height: 270px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 0 2px colors.$gray2;
+  // margin-top: 120px;
+  margin-top: 40px;
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+.uploadContainer {
+  display: flex;
+  flex-wrap: wrap; /* 미리보기와 업로드 버튼을 한 줄에 표시 */
+  gap: 15px; /* 간격 추가 */
+}
+
+.previews {
+  margin-top: 65px;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  // align-items: center;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 270px;
+  flex-wrap: wrap; /* 여러 미리보기를 한 줄에 표시 */
+  gap: 15px;
+}
+
+.previewImage {
+  width: 80px;
+  height: 80px;
+  object-fit: cover; /* 이미지가 잘리지 않고 잘 맞도록 */
+}
+
+.uploadSmall {
+  width: 80px; /* 업로드 버튼 크기 조정 */
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 0 2px colors.$gray2;
+  cursor: pointer;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.uploadIcon {
+  width: 100%; /* 아이콘 크기 조정 */
+  height: 100%;
+}
+
+.previewWrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.deleteButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: red;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
