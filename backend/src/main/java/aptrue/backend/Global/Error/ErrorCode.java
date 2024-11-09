@@ -26,7 +26,6 @@ public enum ErrorCode {
 
     // APT
     APT_NOT_FOUND(HttpStatus.NOT_FOUND, "E301", "아파트를 조회할 수 없습니다."),
-    GPU_SERVER_REQUEST_FAILED(HttpStatus.METHOD_NOT_ALLOWED, "E201", "GPU 서버에 요청하는 데에 실패했습니다."),
 
     // OpenVidu
     SESSION_NOT_FOUND(HttpStatus.NOT_FOUND, "E301", "세션을 찾을 수 없습니다."),
