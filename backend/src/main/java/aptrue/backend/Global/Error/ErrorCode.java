@@ -22,7 +22,12 @@ public enum ErrorCode {
     NOT_FOUND_RQId(HttpStatus.NOT_FOUND, "E104", "요청 번호를 찾을 수 없습니다."),
 
     // GPU
-    GPU_SERVER_REQUEST_FAILED(HttpStatus.METHOD_NOT_ALLOWED, "E201", "GPU 서버에 요청하는 데에 실패했습니다.");
+    GPU_SERVER_REQUEST_FAILED(HttpStatus.METHOD_NOT_ALLOWED, "E201", "GPU 서버에 요청하는 데에 실패했습니다."),
+
+    // OpenVidu
+    SESSION_NOT_FOUND(HttpStatus.NOT_FOUND, "E301", "세션을 찾을 수 없습니다."),
+    SESSION_CREATION_FAILED(HttpStatus.INTERNAL_SERVER_ERROR, "E302", "세션 생성에 실패했습니다."),
+    TOKEN_CREATION_FAILED(HttpStatus.INTERNAL_SERVER_ERROR, "E303", "토큰 생성에 실패했습니다.");
 
     private final HttpStatus status;
     private final String code;
