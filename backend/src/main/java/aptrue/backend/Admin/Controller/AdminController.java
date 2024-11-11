@@ -43,7 +43,7 @@ public class AdminController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login (@RequestBody LoginRequestDto loginRequestDto, HttpServletResponse httpServletResponse) {
-        log.info("{}, {}", loginRequestDto.toString(), loginRequestDto.getPassword());
+        log.info("sadjfhsfsfgsdj{}, {}", loginRequestDto.toString(), loginRequestDto.getPassword());
         LoginResponseDto loginResponseDto = adminService.login(loginRequestDto, httpServletResponse);
         ResultResponse resultResponse = ResultResponse.of(SuccessCode.LOGIN_OK, loginResponseDto);
         return ResponseEntity.status(resultResponse.getStatus()).body(resultResponse);

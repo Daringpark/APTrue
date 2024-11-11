@@ -48,8 +48,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         } else if (refreshToken != null && jwtUtil.validateToken(refreshToken)) {
-            int adminIdFromRefreshToken = jwtUtil.getAdminId(refreshToken);
-
+//            int adminIdFromRefreshToken = jwtUtil.getAdminId(refreshToken);
+            int adminIdFromRefreshToken = 3;
+//            log.info("dksfghjklsdgjldfhgjlsdfhgjklsdj{}", adminIdFromRefreshToken);
             // 레디스에서 저장된 리프레시 토큰과 비교
             String storedRefreshToken = redisService.getRefreshToken(adminIdFromRefreshToken);
             if (refreshToken.equals(storedRefreshToken)) {

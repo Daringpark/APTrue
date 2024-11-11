@@ -85,6 +85,9 @@ public class SecurityConfig {
                             .anyRequest().authenticated(); // 그 외 경로는 인증 필요
                 });
 
+        // 모든 URL에 대한 접근을 허용
+//        http.authorizeHttpRequests((authorize) -> authorize.anyRequest().permitAll());
+
         return http.build();
     }
 
