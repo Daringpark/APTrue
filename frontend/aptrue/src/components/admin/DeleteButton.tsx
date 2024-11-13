@@ -4,12 +4,15 @@ import Button from "../common/button/Button";
 import { useState } from "react";
 import ErrorModal from "./ErrorModal";
 import { useRouter, useParams } from "next/navigation";
+import { adminState } from '@/state/atoms/admins';
+import { useRecoilValue } from 'recoil';
 // import { deleteAdminAction } from "@/serverActions/delete-admin.action";
 import Cookies from "js-cookie";
 
 export default function DeleteButton({adminId}:{adminId:number}) {
 
     const accessToken = Cookies.get('accessToken');
+    const admin = useRecoilValue(adminState); // superAdmin은 삭제 불가
 
     // const {page} : {page:string} = useParams();
     const [ openErrorModal, setOpenErrorModal ] = useState<boolean>(false);
@@ -29,6 +32,14 @@ export default function DeleteButton({adminId}:{adminId:number}) {
     // }
 
     const delteAdmin = async () => {
+
+        if (admin.superAdmin) {
+
+            setMessage('슈퍼 관리자는 삭제할 수 없습니다.')
+            setOpenErrorModal(true);
+
+            return 
+        }
 
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/admin/${adminId.toString()}`, {
